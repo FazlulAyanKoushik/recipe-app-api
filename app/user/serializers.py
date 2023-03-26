@@ -10,7 +10,6 @@ from django.contrib.auth import (
 from django.utils.translation import gettext as _
 
 
-
 class UserSerializer(serializers.ModelSerializer):
     """Serializer for the user objects"""
 
@@ -46,6 +45,17 @@ class UserSerializer(serializers.ModelSerializer):
         #     'refresh': str(refresh),
         # }
         # return user
+
+    def update(self, instance, validated_data):
+        """Update and return user"""
+        password = validated_data.pop('password', None)
+        user = super().update(instance, validated_data)
+
+        if password:
+            user.set_password(password)
+            user.save()
+        return user
+
 
 
 class AuthTokenSerializer(serializers.Serializer):
