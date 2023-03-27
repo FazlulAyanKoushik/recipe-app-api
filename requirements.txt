@@ -5,7 +5,7 @@ Django==4.1.5
 django-cors-headers==3.14.0
 djangorestframework==3.14.0
 psycopg2==2.9.5
-pytz==2022.7.1
+pytz==2022.7.1n
 sqlparse==0.4.3
 tzdata==2022.7
 asgiref==3.6.0
