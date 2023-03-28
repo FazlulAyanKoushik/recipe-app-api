@@ -3,11 +3,15 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from .views import RecipeViewSet, TagViewSet
+from .views import RecipeViewSet, TagViewSet, IngredientViewSet
 
 router = DefaultRouter()
 router.register('recipes', RecipeViewSet)
 router.register('tag-list', TagViewSet)
+router.register('ingredient-list', IngredientViewSet)
+# router.register('recipes', RecipeViewSet)
+# router.register('tags', TagViewSet)
+# router.register('ingredients', IngredientViewSet)
 
 app_name = 'recipe'
 
