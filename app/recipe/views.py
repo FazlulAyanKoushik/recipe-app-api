@@ -1,12 +1,20 @@
 # """
 # Views for recipe APIs
 # """
-from rest_framework import viewsets, mixins
+from rest_framework import viewsets, mixins, status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
-from .sealizers import RecipeSerializer, RecipeDetailSerializer, TagSerializer, IngredientSerializer
+from .sealizers import (
+    RecipeSerializer,
+    RecipeDetailSerializer,
+    TagSerializer,
+    IngredientSerializer,
+    RecipeImageSerializer
+)
 from core.models import Recipe, Tag, Ingredient
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 
 class RecipeViewSet(viewsets.ModelViewSet):
@@ -24,6 +32,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
         """Return the serializer class for request"""
         if self.action == 'list':
             return RecipeSerializer
+        elif self.action == 'upload_image':
+            return RecipeImageSerializer
 
         return self.serializer_class
 
